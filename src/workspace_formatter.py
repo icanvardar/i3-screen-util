@@ -1,42 +1,41 @@
 #!/usr/bin/env python3
 
 import os
-import re
 
-# deletes dumb slashes
-# i should have used regex here
-# i dont know i might have skill issue
-def format_workspace(lines):
-    if "splith" in lines[2]:
-        lines = lines[2:]
-        lines[0] = "{\n"
-    else:
-        lines = lines[1:]
 
-    return "".join(str(line) for line in lines);
+class WorkspaceFormatter:
+    # deletes slashes
+    @staticmethod
+    def format_workspace(lines):
+        if "splith" in lines[2]:
+            lines = lines[2:]
+            lines[0] = "{\n"
+        else:
+            lines = lines[1:]
 
-def format_and_overwrite():
-    for i in range(0, 10):
-        path = os.path.expanduser(
-            f"~/.dotfiles/i3/.config/i3/workspaces/workspace_{i}.json"
-        )
-        with open(path) as file:
-            try:
-                lines = file.readlines()
+        return "".join(str(line) for line in lines)
 
-                if len(lines) <= 1:
-                    continue
-                
-                result = format_workspace(lines).replace("//", "")
-            except FileNotFoundError:
-                raise Exception(f"Workspace {i}'s config not found!")
-        with open(path, "w") as file:
-            file.write(result)
+    @classmethod
+    def format_and_overwrite(cls):
+        for i in range(0, 10):
+            path = os.path.expanduser(
+                f"~/.dotfiles/i3/.config/i3/workspaces/workspace_{i}.json"
+            )
+            with open(path) as file:
+                try:
+                    lines = file.readlines()
 
-            file.close()
+                    if len(lines) <= 1:
+                        continue
 
-def main():
-    format_and_overwrite()
+                    result = cls.format_workspace(lines).replace("//", "")
+                except FileNotFoundError:
+                    raise Exception(f"Workspace {i}'s config not found!")
+            with open(path, "w") as file:
+                file.write(result)
 
-if __name__ == "__main__":
-    main()
+                file.close()
+
+    @staticmethod
+    def try_me():
+        print("try me")
