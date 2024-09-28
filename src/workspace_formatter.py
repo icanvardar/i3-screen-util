@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
 import os
+import subprocess
 
 
 class WorkspaceFormatter:
-    # deletes slashes
     @staticmethod
     def format_workspace(lines):
         if "splith" in lines[2]:
@@ -37,5 +37,11 @@ class WorkspaceFormatter:
                 file.close()
 
     @staticmethod
-    def try_me():
-        print("try me")
+    def load_workspaces(workspaces):
+        subprocess.run(f"./bin/load-workspaces.sh {workspaces}")
+
+    @classmethod
+    def save_workspaces(cls, workspaces):
+        subprocess.run(f"./bin/save-workspaces.sh {workspaces}")
+
+        cls.format_and_overwrite(cls)
