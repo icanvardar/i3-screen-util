@@ -1,0 +1,23 @@
+[project]
+name = "i3-screen-util"
+version = "0.1.0"
+authors = [
+    { name="Can Vardar", email="ismailcanvardar@gmail.com" },
+]
+description = " A screen management tool for your lovely i3wm config. "
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/icanvardar/i3-screen-util"
+Issues = "https://github.com/icanvardar/i3-screen-util/issues"
+
+[tool.pytest.ini_options]
+addopts = [
+    "--import-mode=importlib",
+]

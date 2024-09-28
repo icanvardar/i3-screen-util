@@ -3,12 +3,11 @@
 import sys
 import os
 
-sys.path.append(os.path.join(os.path.dirname(__file__), "src"))
+sys.path.append(os.path.join(os.path.dirname(__file__), "src/i3_screen_util"))
 
 from workspace_formatter import WorkspaceFormatter
 from lockscreen import Lockscreen
 from monitor_controller import MonitorController
-
 from args import Args
 
 
