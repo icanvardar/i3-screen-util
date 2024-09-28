@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 
-# ps -aux | grep workspace-saver | grep -v grep | awk '{ print $2 }' | xargs kill -9
+dir_path=$1
 
-dir_path="$HOME/.dotfiles/i3/.config/i3/workspaces"
+if [ -z "$dir_path" ]; then
+  echo "Please provide directory of workspaces."
+  exit 1
+fi
 
 if [ ! -d $dir_name ]; then
   mkdir -p $dir_path
@@ -11,7 +14,7 @@ fi
 # OMG THIS LOOP BACKUPS MY LAYOUT, SWEEEEEEEET!
 idx=9
 while [ $idx -gt -1 ]; do
-  path="$HOME/.dotfiles/i3/.config/i3/workspaces/workspace_$idx.json"
+  path="${dir_path}/workspace_${idx}.json"
 
   current_layout=$(mktemp)
   i3-save-tree --workspace $idx >"$current_layout"
@@ -24,7 +27,3 @@ while [ $idx -gt -1 ]; do
 
   idx=$((idx - 1))
 done
-
-python3 ~/.dotfiles/bin/.local/bin/workspace_formatter.py
-
-notify-send "Workspaces saved."
