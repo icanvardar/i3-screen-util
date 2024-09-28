@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 
-dir_path="$HOME/.dotfiles/i3/.config/i3/workspaces"
+dir_path=$1
+
+if [ -z "$dir_path" ]; then
+  echo "Please provide directory of workspaces."
+  exit 1
+fi
 
 if [ ! -d $dir_name ]; then
   mkdir -p $dir_path
@@ -9,7 +14,7 @@ fi
 # loads MY PRECIOUS LAYOUTS
 idx=9
 while [ $idx -gt -1 ]; do
-  path="$HOME/.dotfiles/i3/.config/i3/workspaces/workspace_$idx.json"
+  path="${dir_path}/workspace_${idx}.json"
 
   if [ ! -f $path ]; then
     touch $path
@@ -24,5 +29,3 @@ while [ $idx -gt -1 ]; do
 
   idx=$((idx - 1))
 done
-
-notify-send "Workspaces loaded."
