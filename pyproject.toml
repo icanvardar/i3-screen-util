@@ -4,8 +4,9 @@ version = "0.1.0"
 authors = [
     { name="Can Vardar", email="ismailcanvardar@gmail.com" },
 ]
-description = " A screen management tool for your lovely i3wm config. "
+description = "A screen management tool for your lovely i3wm config."
 readme = "README.md"
+readme-content-type = "text/markdown"
 requires-python = ">=3.10"
 classifiers = [
     "Programming Language :: Python :: 3",

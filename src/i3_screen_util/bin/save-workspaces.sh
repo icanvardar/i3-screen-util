@@ -7,7 +7,7 @@ if [ -z "$dir_path" ]; then
   exit 1
 fi
 
-if [ ! -d $dir_name ]; then
+if [ ! -d $dir_path ]; then
   mkdir -p $dir_path
 fi
 

@@ -23,7 +23,7 @@ def main():
         case "lockscreen":
             Lockscreen.control_lockscreen()
         case "toggle":
-            MonitorController.toggle(
+            MonitorController.toggle_monitor(
                 args.monitor_number, args.locate_to, args.locate_of
             )
 

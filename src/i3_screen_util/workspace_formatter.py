@@ -16,11 +16,9 @@ class WorkspaceFormatter:
         return "".join(str(line) for line in lines)
 
     @classmethod
-    def format_and_overwrite(cls):
+    def format_and_overwrite(cls, workspaces):
         for i in range(0, 10):
-            path = os.path.expanduser(
-                f"~/.dotfiles/i3/.config/i3/workspaces/workspace_{i}.json"
-            )
+            path = f"{workspaces}/workspace_{i}.json"
             with open(path) as file:
                 try:
                     lines = file.readlines()
@@ -38,10 +36,17 @@ class WorkspaceFormatter:
 
     @staticmethod
     def load_workspaces(workspaces):
-        subprocess.run(f"./bin/load-workspaces.sh {workspaces}")
+        dirname = os.path.dirname(__file__)
+        sc_path = os.path.join(dirname, "./bin/load-workspaces.sh")
+        subprocess.run(
+            f"{sc_path} {workspaces}",
+            shell=True,
+        )
 
     @classmethod
     def save_workspaces(cls, workspaces):
-        subprocess.run(f"./bin/save-workspaces.sh {workspaces}")
+        dirname = os.path.dirname(__file__)
+        sc_path = os.path.join(dirname, "./bin/save-workspaces.sh")
+        subprocess.run(f"{sc_path} {workspaces}", shell=True)
 
-        cls.format_and_overwrite(cls)
+        cls.format_and_overwrite(workspaces)

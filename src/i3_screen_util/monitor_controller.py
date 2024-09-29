@@ -6,7 +6,7 @@ import re
 import subprocess
 import sys
 
-BACKUP_FILE_PATH = "/var/tmp/i3-screen-utl.data.bin"
+BACKUP_FILE_PATH = "/var/tmp/i3-screen-util.data.bin"
 
 # reference: https://www.thinkwiki.org/wiki/Xorg_RandR_1.2#Output_port_names
 XRANDR_DISPLAY_TYPES = [
@@ -59,14 +59,14 @@ class Backup:
 
 
 class MonitorController:
-    @classmethod
+    @staticmethod
     def turn_off_monitor(monitor_name, backup_data):
         subprocess.run(f"xrandr --output {monitor_name} --off", shell=True)
 
         backup_data[monitor_name] = False
         Backup.save_backup_data(backup_data)
 
-    @classmethod
+    @staticmethod
     def turn_on_monitor(monitor_name, to, side_monitor_name, backup_data):
         subprocess.run(
             f"xrandr --output {monitor_name} --auto --{to}-of {side_monitor_name}",
@@ -76,7 +76,7 @@ class MonitorController:
         backup_data[monitor_name] = True
         Backup.save_backup_data(backup_data)
 
-    @staticmethod
+    @classmethod
     def toggle_monitor(cls, monitor_number, locate_to, locate_of):
         if os.path.exists(BACKUP_FILE_PATH) is False:
             with open(BACKUP_FILE_PATH, "w") as backup_file:
@@ -120,4 +120,4 @@ class MonitorController:
         except IndexError:
             raise Exception("Invalid monitor number.")
         except Exception:
-            sys.exit()
+            sys.exit(0)
