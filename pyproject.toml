@@ -6,7 +6,7 @@ authors = [
 ]
 description = "A screen management tool for your lovely i3wm config."
 readme = "README.md"
-readme-content-type = "text/markdown"
+license = { file = "LICENSE" }
 requires-python = ">=3.10"
 classifiers = [
     "Programming Language :: Python :: 3",
@@ -22,3 +22,16 @@ Issues = "https://github.com/icanvardar/i3-screen-util/issues"
 addopts = [
     "--import-mode=importlib",
 ]
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["i3_screen_util"]
+exclude = ["tests"]
+namespaces = false
+
+[project.scripts]
+i3-screen-util = "i3_screen_util:run_app"
