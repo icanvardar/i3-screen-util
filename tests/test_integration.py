@@ -1,6 +1,6 @@
 from src.i3_screen_util.args import Args
 from src.i3_screen_util.monitor_controller import BACKUP_FILE_PATH
-from main import main as run_app
+from src.i3_screen_util import run_app
 
 import sys
 import subprocess
