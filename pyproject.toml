@@ -1,6 +1,6 @@
 [project]
 name = "i3-screen-util"
-version = "0.1.0"
+version = "0.1.1"
 authors = [
     { name="Can Vardar", email="ismailcanvardar@gmail.com" },
 ]
@@ -35,3 +35,10 @@ namespaces = false
 
 [project.scripts]
 i3-screen-util = "i3_screen_util:run_app"
+
+[tool.setuptools]
+script-files = [
+  "src/i3_screen_util/bin/save-workspaces.sh", 
+  "src/i3_screen_util/bin/load-workspaces.sh", 
+  "src/i3_screen_util/bin/control-lockscreen.sh"
+]
