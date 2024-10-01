@@ -76,13 +76,8 @@ class MonitorController:
         backup_data[monitor_name] = True
         Backup.save_backup_data(backup_data)
 
-    @classmethod
-    def toggle_monitor(cls, monitor_number, locate_to, locate_of):
-        if os.path.exists(BACKUP_FILE_PATH) is False:
-            with open(BACKUP_FILE_PATH, "w") as backup_file:
-                backup_file.close()
-                pass
-
+    @staticmethod
+    def get_monitor_options():
         monitors_raw = subprocess.run(
             "xrandr", shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT
         )
@@ -90,11 +85,20 @@ class MonitorController:
         # wow i can do regex search UwU
         pattern = r"([A-Za-z]+-\d+) connected"
         displays = re.findall(pattern, monitors_raw.stdout.decode())
-        options = [
+        return [
             display
             for display in displays
             if any(display.startswith(dt) for dt in XRANDR_DISPLAY_TYPES)
         ]
+
+    @classmethod
+    def toggle_monitor(cls, monitor_number, locate_to, locate_of):
+        if os.path.exists(BACKUP_FILE_PATH) is False:
+            with open(BACKUP_FILE_PATH, "w") as backup_file:
+                backup_file.close()
+                pass
+
+        options = MonitorController.get_monitor_options()
 
         try:
             monitor_name = options[monitor_number]
