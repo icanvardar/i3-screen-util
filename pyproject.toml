@@ -1,6 +1,6 @@
 [project]
 name = "i3-screen-util"
-version = "0.2.1"
+version = "0.2.2"
 authors = [
     { name="Can Vardar", email="ismailcanvardar@gmail.com" },
 ]
