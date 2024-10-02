@@ -10,6 +10,7 @@ class Args:
     def __init__(self):
         self.parser = argparse.ArgumentParser(prog="PROG")
         self.parser.add_argument(
+            "-v",
             "--version",
             action="version",
             version=f"{__version__}",
