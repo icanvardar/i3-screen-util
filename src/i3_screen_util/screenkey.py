@@ -7,10 +7,12 @@ from .process_manager import ProcessManager
 class Screenkey:
     @staticmethod
     def show():
-        # double check if there is any screenkey ran before, manually
-        ProcessManager.find_and_kill("screenkey")
-
-        subprocess.Popen("screenkey")
+        subprocess.Popen(
+            "screenkey",
+            shell=True,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+        )
 
     @staticmethod
     def hide():
