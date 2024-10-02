@@ -1,5 +1,7 @@
 from src.i3_screen_util.args import Args
 from src.i3_screen_util.monitor_controller import BACKUP_FILE_PATH, MonitorController
+from src.i3_screen_util.process_manager import ProcessManager
+from src.i3_screen_util.screenkey import Screenkey
 from src.i3_screen_util import run_app
 
 import sys
@@ -7,7 +9,7 @@ import subprocess
 from pathlib import Path
 
 
-def test_organize_method():
+def test_organize_method_with_save_arg():
     tmp = sys.argv
     try:
         sys.argv = [
@@ -22,6 +24,7 @@ def test_organize_method():
         args = Args()
         run_app()
 
+        assert args.method == "organize"
         assert args.action == "save"
 
         for i in range(10):
@@ -29,10 +32,11 @@ def test_organize_method():
             assert workspace_path.exists() is True
 
         subprocess.run(f"rm -rf {args.workspaces}", shell=True)
-
-        # TODO: add load workspace test suite as well
     finally:
         sys.argv = tmp
+
+
+# TODO: add load workspace test suite as well (HARD TO TEST CHECK LATER)
 
 
 def test_lockscreen_method():
@@ -43,6 +47,7 @@ def test_lockscreen_method():
             "lockscreen",
         ]
 
+        args = Args()
         run_app()
 
         running_process = subprocess.run(
@@ -54,6 +59,7 @@ def test_lockscreen_method():
 
         running_process = running_process.stdout.decode()
 
+        assert args.method == "lockscreen"
         assert len(running_process) > 0
 
         subprocess.run(
@@ -88,6 +94,7 @@ def test_toggle_method():
         run_app()
         args = Args()
 
+        assert args.method == "toggle"
         assert args.monitor_number == 1
         assert args.locate_to == "left"
         assert args.locate_of == 0
@@ -95,5 +102,23 @@ def test_toggle_method():
         backup_file_path = Path(BACKUP_FILE_PATH)
 
         assert backup_file_path.exists() is True
+    finally:
+        sys.argv = tmp
+
+
+def test_screenkey_method():
+    tmp = sys.argv
+    try:
+        sys.argv = [tmp[0], "screenkey"]
+
+        run_app()
+        args = Args()
+
+        assert args.method == "screenkey"
+
+        process = ProcessManager.find_process("screenkey")
+
+        if process is not None:
+            Screenkey.hide()
     finally:
         sys.argv = tmp

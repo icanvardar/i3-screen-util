@@ -4,6 +4,7 @@ from .args import Args
 from .lockscreen import Lockscreen
 from .monitor_controller import MonitorController
 from .workspace_formatter import WorkspaceFormatter
+from .screenkey import Screenkey
 
 
 def run_app():
@@ -21,3 +22,5 @@ def run_app():
             MonitorController.toggle_monitor(
                 args.monitor_number, args.locate_to, args.locate_of
             )
+        case "screenkey":
+            Screenkey.toggle()
