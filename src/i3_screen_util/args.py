@@ -28,6 +28,9 @@ class Args:
         parser_toggle.add_argument("-lt", "--locate-to", choices=["left", "right"])
         parser_toggle.add_argument("-lo", "--locate-of", type=int)
 
+        # screenkey
+        subparsers.add_parser("screenkey", help="Toggles screenkey, automatically.")
+
         args = self.parser.parse_args()
         method = args.method
 
@@ -43,5 +46,7 @@ class Args:
                 self.monitor_number = args.monitor_number - 1
                 self.locate_to = args.locate_to
                 self.locate_of = args.locate_of - 1
+            case "screenkey":
+                return
             case _:
                 self.parser.error("Please provide valid operation method.")
