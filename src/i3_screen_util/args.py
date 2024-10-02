@@ -3,10 +3,18 @@
 import argparse
 import os
 
+__version__ = "0.2.1"
+
 
 class Args:
     def __init__(self):
         self.parser = argparse.ArgumentParser(prog="PROG")
+        self.parser.add_argument(
+            "--version",
+            action="version",
+            version=f"{__version__}",
+            help="Shows version",
+        )
         subparsers = self.parser.add_subparsers(dest="method")
 
         # organize
