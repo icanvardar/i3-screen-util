@@ -11,7 +11,7 @@ class ProcessManager:
             + " | grep -v grep | awk '{ print $2 }' | xargs kill -9"
         )
 
-        subprocess.run(command, shell=True)
+        subprocess.Popen(command, shell=True)
 
     @staticmethod
     def find_process(process_name):
