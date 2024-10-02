@@ -11,10 +11,8 @@ while true; do
   # NOTE: i might make it run for various windows later on
   if [[ "$status" == "Playing" && ("$focused_window_name" == *"Mozilla"*) ]]; then
     xautolock -disable
-    notify-send "xautolock disabled for playing media in: $focused_window_name."
   else
     xautolock -enable
-    notify-send "xautolock enabled."
   fi
 
   sleep 5
