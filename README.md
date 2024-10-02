@@ -28,6 +28,7 @@ Before using `i3-screen-util`, ensure the following tools and packages are insta
 - **i3-msg**
 - **xrandr**
 - **screenkey**
+- **betterlockscreen**
 
 ### API Reference
 
