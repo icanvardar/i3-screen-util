@@ -62,6 +62,13 @@ i3-screen-util toggle --monitor-number <num> [--locate-to <left|right>] [--locat
 - **--locate-to**: Optional. Position the monitor to the left or right of another monitor.
 - **--locate-of**: Optional. The monitor number to position relative to.
 
+#### Toggle Screenkey
+
+Enable or disable `screenkey` window.
+```bash
+i3-screen-util screenkey
+```
+
 ### License
 
 This project is licensed under the MIT License. See the [LICENSE](https://github.com/icanvardar/i3-screen-util/blob/main/LICENSE) file for details.
