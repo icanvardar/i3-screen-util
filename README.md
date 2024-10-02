@@ -18,6 +18,17 @@ pip install i3-screen-util
 - **Prevent Lockscreen**: Automatically disable the lock screen while watching videos, regardless of fullscreen status.
 - **Toggle Monitor**: Quickly enable/disable monitors by specifying their monitor number and location.
 
+### Dependencies
+
+Before using `i3-screen-util`, ensure the following tools and packages are installed on your system:
+
+- **playerctl**
+- **xautolock**
+- **i3-save-tree**
+- **i3-msg**
+- **xrandr**
+- **screenkey**
+
 ### API Reference
 
 #### Organize Workspaces
